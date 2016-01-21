@@ -1,0 +1,62 @@
+{% load static wagtailuserbar %}
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="author" content="Jack Lawrence-Jones" />
+
+
+
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_suffix %}{% endblock %}</title>
+
+
+        {# Favicon #}
+        <!-- 
+        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+        <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+        -->
+
+        {# Stylesheets  ----------------------------------#}
+
+        {# Bootstrap #}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+        {# base stylesheet #}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/pibaw.css' %}">
+
+        {% block extra_css %}
+            {# Templates' Stylesheets #}
+        {% endblock %}
+
+        {# /stylesheets --------------------------------- #}
+
+    </head>
+
+    <body class="{% block body_class %}{% endblock %}">
+        {% wagtailuserbar %}
+
+        {% block content %}{% endblock %}
+
+        {# JavaScript ----------------------------------- #}
+        {# jQuery #}
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> 
+
+        {% block extra_js %}
+            {# Templates' JavaScript #}
+        {% endblock %}
+        {# /JavaScript ---------------------------------- #}
+    
+    </body>
+
+</html>
