@@ -6,7 +6,21 @@
 
     <link rel="stylesheet" href="{% static 'css/gallery.css' %}" />
 
-   
+
+{% endblock %}
+
+{% block extra_js %}
+
+    <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+
+    <script>
+        $('.grid').isotope({
+          // options
+          itemSelector: '.grid-item',
+          // layoutMode: 'fitRows'
+        });
+    </script>
+
 {% endblock %}
 
 
@@ -15,31 +29,30 @@
     {# {% include "navbar.html" %} #}
    
 
-    <div class="jumbotron top-banner">
+    <div class="container">
+        <div class="row">
+            <h1>
+                <div class="title_left">{{ page.title_left}}</div>
+                <div class="title_right">{{ page.title_right}}</div>
 
-        <div class="container">
-             <div class="row">
-                <h1>{{ page.title}}</h1>
-             </div>
+            </h1>
         </div>
-
     </div>
 
+    {% if page.pictures %} 
+   	    <div class="grid">
+   		
+       			{% for picture in page.pictures %}
+                <div class="grid-item">
+                  {% image picture.image width-500 %}
+                </div>
+       			{% endfor %}
 
-   	<div class="website_list">
-   		{% if page.websites %}
-   			{% for website in page.websites %}
-               
-               {% cycle 'light' 'dark' as backgroundcolourclass silent  %}
+        </div>
 
-               {% cycle '_one' '_two' '_three' as gallery_id_postfix silent  %}
-   				
-               {% include "portfolio/portfolio_item.html" %}
-   			{% endfor %}
-   		{% endif %}
-   	</div>
+   	{% endif %}
 
-      {% include "footer.html" %}
+
 
 {% endblock %}
 

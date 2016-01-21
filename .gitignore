@@ -1,4 +1,10 @@
-*.pyc
-*.swp
-local_settings.py
+# Django
 *.sqlite3
+media
+
+*.pyc
+__pycache__
+venv
+/venv
+.DS_Store
+

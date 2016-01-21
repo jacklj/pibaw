@@ -21,6 +21,12 @@ class GalleryPage(Page):
 	title_left = models.CharField(max_length=255, help_text="Left half of title", blank=True)
 	title_right = models.CharField(max_length=255, help_text="Right half of title", blank=True)
 
+	@property 
+	def pictures(self):
+		if self.gallery_pictures.all():
+			return self.gallery_pictures.all()
+		else:
+			return False
 
 	content_panels = Page.content_panels + [
 		FieldPanel('title_left'),
