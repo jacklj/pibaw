@@ -1,5 +1,13 @@
 {% extends "base.html" %}
 
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block extra_css %}
+
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+
+{% endblock %}
+
 {% block body_class %}homepage{% endblock %}
 
 {% block content %}
@@ -10,13 +18,13 @@
 
 	  	<!-- <div class="home_row_one"> -->
 
-		  	<a class="home_panel one">
-		  		<div class="content">
-					Pictures in Black and White
-				</div>
+		  	<a class="home_panel one" href="/">
+		                <div class="title_white">
+		                	<span>Pictures</span></div>
+		                <div class="title_black">in Black and White</div>
 			</a>
 
-			<a class="home_panel two">
+			<a class="home_panel two" href="/food/">
 				<div class="content">
 					Food
 				</div>
@@ -26,13 +34,13 @@
 
 	  	<!-- <div class="home_row_two"> -->
 
-		  	<a class="home_panel three">
+		  	<a class="home_panel three" href="/landscapes/">
 		  		<div class="content">
 	  				Landscapes
 	  			</div>
 	  		</a>
 
-			<a class="home_panel four">
+			<a class="home_panel four" href="/about/">
 				<div class="content">
 					About
 				</div>
