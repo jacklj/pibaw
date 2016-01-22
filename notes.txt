@@ -1,3 +1,8 @@
-1. preload hover images on homepage so no delay when mouseover
+1. do the image loaded rerender gallery stuff as images sometimes come out all ontop of each other
 
-2. 
+
+2. preload hover images on homepage so no delay when mouseover
+
+3. back button on gallery pages (little minimalist arrow to left of title?)
+
+4. about page 
