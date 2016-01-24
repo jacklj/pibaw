@@ -12,13 +12,132 @@
 {% block extra_js %}
 
     <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
 
     <script>
-        $('.grid').isotope({
-          // options
-          itemSelector: '.grid-item',
-          // layoutMode: 'fitRows'
+
+        // load all image urls into array
+        var all_image_array = [];
+        console.log("Loading images into array:");
+
+        {% if page.pictures %} 
+            {% for picture in page.pictures %}
+                 {% image picture.image width-500 as picture %}
+                 all_image_array.push("{{ picture.url }}");
+                 console.log("Image: " + "{{ picture.url }}");
+            {% endfor %}
+        {% endif %}
+
+
+        // number of images to start with, and number of new images to add each time, depends on viewport size 
+        // (could have a minimum amount (so more than just one or two pictures are initially loaded on mobile), but then you need as many so that the containing div has a height more than the viewport height)
+
+        // if theres a viewport resize, may have to add more images too (so that the same conditions are met as above)
+
+        // if scroll near bottom, add more (2 or 3 layers -> depends on the viewport size how many images this entails)
+
+        
+        // var viewport_width = $(window).width();
+        // var viewport_height = $(window).height();
+        // use these to determine number_of_photos_to_add
+
+        var number_of_photos_to_add = 5; // for now
+        var photos_added_so_far = 0;
+
+        $(document).ready(function() {
+            // initialise isotope
+            var $isotope_container = $('.grid').isotope({
+                itemSelector: '.grid-item',
+                // masonry: {
+                //     columnWidth: 300
+                // }
+                // layoutMode: 'fitRows'
+            });
+
+            // add first subset of photos
+            // var $first_subset_of_photos = get_next_subset_of_photos();
+            // $isotope_container.isotopeImagesReveal($first_subset_of_photos);
+
+            // add more photos when click button
+            $('.add_images').click( function() {
+                var $subset_of_photos = get_next_subset_of_photos();
+                if($subset_of_photos) {
+                  $isotope_container.isotopeImagesReveal( $subset_of_photos );
+                } else {
+                  console.log("we're out of images.....");
+                }
+            });
+
         });
+
+        function get_next_subset_of_photos() {
+            var images_to_add = '';
+            
+            for (var i = 0; i < number_of_photos_to_add; i++) {
+                var next_image_html = getImage();
+
+                if(!next_image_html) { // have run out of images
+                  if(images_to_add === '') {
+                      // no new images at all!
+                      return false;
+                  } else {
+                      // some images to return
+                      break;
+                  }
+                } else {
+                    images_to_add += next_image_html;
+                }
+
+            }
+
+            console.log("Finished collecting subset of images");
+            
+            return $(images_to_add); // returns images html as jquery object            
+        }
+
+        function getImage() {
+            // pop first element off list
+            if(all_image_array.length == 0) {
+                return false;
+            } else {
+                var image_src = all_image_array.shift();
+
+                var image_html =  "<div class='grid-item'>" + 
+                                  "<img src='" + image_src + 
+                                  "' /></div>";
+                return image_html;
+            }
+        }
+
+        $.fn.isotopeImagesReveal = function( $items ) {
+            var iso = this.data('isotope'); // allows access to isotope inner methods
+            
+            var itemSelector = iso.options.itemSelector; // itemselector is the class name of the divs that contain each image
+
+            // hide by default so that later the images can be revealed one by one as they load
+            $items.hide();
+            
+            // append all images to container 
+            this.append( $items ); // 'this' is the div containing isotope 
+            
+            $items.imagesLoaded().progress( function(imgLoad, image) { 
+                // progress is a built in jQuery function, called each time an item is loaded.
+
+                var $item = $( image.img ).parents( itemSelector );
+                // the item is the div surrounding the newly loaded image (ie the itemSelector div)
+
+                $item.show(); // reveal one by one when loaded
+                
+                iso.appended( $item ); // make isotope aware of the appended image
+
+                $('.grid').isotope('layout'); // iso.appended not enough - seem to have to recalculate isotope layout...
+            });
+            
+            return this; // return the div containing isotope
+          };
+
+
+
     </script>
 
 {% endblock %}
@@ -39,14 +158,17 @@
         </div>
     </div>
 
+    <button class="add_images">Add pics</button>
+
     {% if page.pictures %} 
    	    <div class="grid">
-   		
+   		     <noscript>
        			{% for picture in page.pictures %}
                 <div class="grid-item">
                   {% image picture.image width-500 %}
                 </div>
        			{% endfor %}
+          </noscript>
 
         </div>
 

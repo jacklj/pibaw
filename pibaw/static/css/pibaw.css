@@ -10,6 +10,10 @@ html, body {
 }
 
 /*home css .. for now whilst the real file cant be found... */
+body {
+	min-height: 850px;
+}
+
 .home_container {
 /*	position: absolute;
 	top: 50%;
@@ -28,6 +32,9 @@ html, body {
 }
 
 @media (max-width: 800px) {
+	body {
+		min-height: none;
+	}	
 	.home_container {
 		margin:0px;
 		width:100%;
