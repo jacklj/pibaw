@@ -1,5 +1,11 @@
 body {
 	text-align:center;
+	position:relative;
+
+	min-height: none;
+}
+html {
+	min-height: none;
 }
 
 h1 {
@@ -71,6 +77,10 @@ h1 div.title_right {
 	}
 }
 
+.grid {
+	background-color: rgb(220,220,220);
+	position:relative;
+}
 
 .grid-item { 
 	width: 20%; 
@@ -80,19 +90,19 @@ h1 div.title_right {
 }
 
 
-@media (max-width: 1600px) {
+@media (max-width: 1800px) {
 	.grid-item { 
 		width: 25%;
 	}
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1400px) {
 	.grid-item { 
 		width: 33.33%;
 	}
 }
 
-@media (max-width: 750px) {
+@media (max-width: 900px) {
 	.grid-item { 
 		width: 50%;
 	}

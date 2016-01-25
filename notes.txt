@@ -1,3 +1,6 @@
+0. debounce scroll detection (and/or bottom detection?)
+
+
 1. do the image loaded rerender gallery stuff as images sometimes come out all ontop of each other
 
 
@@ -5,4 +8,8 @@
 
 3. back button on gallery pages (little minimalist arrow to left of title?)
 
-4. about page 
+4. about page (or 'conversations')?
+
+5. for noscript need new styles (separate sylesheet?) for imaes - keep it simple
+
+6. arty 404

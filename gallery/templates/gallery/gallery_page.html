@@ -16,6 +16,12 @@
 
     <script>
 
+        // ISSUES:  
+        // Sometimes extra images get added
+        // I think because it's all concurrent
+        // Its non-deterministic due to varying system loads
+        // Sometimes you get an image 'top' css value of 'auto', because isotope hasnt rearranged it yet, and therefore the fold calculations fail
+
         // load all image urls into array
         var all_image_array = [];
         console.log("Loading images into array:");
@@ -29,37 +35,110 @@
         {% endif %}
 
 
-        // number of images to start with, and number of new images to add each time, depends on viewport size 
-        // (could have a minimum amount (so more than just one or two pictures are initially loaded on mobile), but then you need as many so that the containing div has a height more than the viewport height)
-
-        // if theres a viewport resize, may have to add more images too (so that the same conditions are met as above)
-
-        // if scroll near bottom, add more (2 or 3 layers -> depends on the viewport size how many images this entails)
-
-        
-        // var viewport_width = $(window).width();
-        // var viewport_height = $(window).height();
-        // use these to determine number_of_photos_to_add
 
         var number_of_photos_to_add = 5; // for now
         var photos_added_so_far = 0;
 
+        var minimum_number_of_images = 3;
+
+        var $gallery_container;
+        var $isotope_container;
+        var original_viewport_height = $(window).height();
+        var viewport_width = $(window).width();
+        var viewport_height = $(window).height();
+
+
+        function number_of_columns() {
+            var viewport_width = $(window).width();
+            if(viewport_width <= 550) {
+                return 1;
+            } else if (viewport_width <= 900) {
+                return 2;
+            } else if (viewport_width <= 1400) {
+                return 3;
+            } else if (viewport_width <= 1800) {
+                return 4;
+            } else {
+                return 5;
+            }
+        }
+  
+
+
         $(document).ready(function() {
+
+            $gallery_container = $('.grid');
+
             // initialise isotope
-            var $isotope_container = $('.grid').isotope({
+            $isotope_container = $gallery_container.isotope({
+                percentPosition: true,
                 itemSelector: '.grid-item',
-                // masonry: {
-                //     columnWidth: 300
-                // }
-                // layoutMode: 'fitRows'
+                masonry: {
+                  columnWidth: '.grid-item'
+                }
             });
 
-            // add first subset of photos
-            // var $first_subset_of_photos = get_next_subset_of_photos();
-            // $isotope_container.isotopeImagesReveal($first_subset_of_photos);
+            // Initially, populate gallery
+            populate_gallery();
+
+            // on horizontal page resize, iosotope recalculates layout
+            // -> use this to trigger check if repopulation of gallery if necessary
+            $isotope_container.on( 'layoutComplete',
+                function( event, laidOutItems ) {
+                  console.log( '*******Isotope layout completed on ' +
+                    laidOutItems.length + ' items' );
+                  populate_gallery();
+                }
+              );
+
+
+            
+            // If we detect a viewport resize, may have to add more images too (so that the same conditions are met as above)
+            // dont need to as horizontal is dealt with by isotope, vertical by scroll detector?
+            $(window).resize(function () { 
+              // debounce this
+              console.log("~~~~~~resize detected");
+              original_viewport_height = $(window).height();
+              // populate_gallery();
+              
+
+
+
+              // $gallery_container.one( 'arrangeComplete', function() {
+              //       console.log('*********arrange done, just this one time');
+              //       original_viewport_height = $(window).height();
+              //       populate_gallery();
+
+              // });
+
+            });
+
+            $(window).smartresize(function(){
+                // code that takes it easy...
+                console.log("~~~~ SMART RESIZE");
+            });
+
+            // If the user scrolls near bottom of page, add 2 or 3 more layers of images
+            $(window).scroll(function() { // debounce or throttle? maybe throttle so whilst still moving it works
+                console.log("Scrolling...");
+                   if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+                       console.log("Near bottom");
+                       var $images = get_X_Images(number_of_columns());
+                       $isotope_container.isotopeImagesReveal($images );
+
+                   }
+            });
+
+
+            // PS could change picture 'showing' animation, or at least have a grey/light black placeholder where image will load (must be same size as image!)
+
+            
+
+
 
             // add more photos when click button
             $('.add_images').click( function() {
+              console.log("Number of columns: " + number_of_columns());
                 var $subset_of_photos = get_next_subset_of_photos();
                 if($subset_of_photos) {
                   $isotope_container.isotopeImagesReveal( $subset_of_photos );
@@ -69,35 +148,142 @@
             });
 
         });
+        
 
-        function get_next_subset_of_photos() {
-            var images_to_add = '';
-            
-            for (var i = 0; i < number_of_photos_to_add; i++) {
-                var next_image_html = getImage();
-
-                if(!next_image_html) { // have run out of images
-                  if(images_to_add === '') {
-                      // no new images at all!
-                      return false;
-                  } else {
-                      // some images to return
-                      break;
-                  }
-                } else {
-                    images_to_add += next_image_html;
-                }
-
+        function populate_gallery() {
+            if (is_gallery_populated_enough_to_cover_viewport()) {
+                console.log("GALLERY POPULATED!");
+                // turn off layout handler? but then wont catch resizes
+                return true;
+            } else {
+              // try and add another
+              var $single_image = getImage();
+              if($single_image) {
+                  // another image exists - add it to page
+                  $isotope_container.isotopeImagesReveal($single_image );
+              } else {
+                  // no more images left
+                  console.log("Ran out of images!");
+                  return true;
+              }
             }
-
-            console.log("Finished collecting subset of images");
-            
-            return $(images_to_add); // returns images html as jquery object            
         }
 
+
+
+        function is_gallery_populated_enough_to_cover_viewport() {
+            //    We need enough images so that the viewport is full. 
+            //    To do this:
+            //        1. x = number of columns
+            //        2. as soon as x images have bottom edge below 
+            //           edge of viewport, then the gallery has 
+            //           been populated.
+
+            console.log("Check if gallery populated.");
+
+            var viewport_height = $( window ).height();
+
+            // counter
+            var number_of_images_overlapping_the_fold = 0;
+
+            // get all images currently in gallery
+            var all_current_gallery_items = $gallery_container.children(".grid-item");
+            console.log(all_current_gallery_items.length + " gallery items--------");
+            console.log(all_current_gallery_items);
+
+
+            // iterate through, see how many overlap the fold
+            for (var i = 0; i < all_current_gallery_items.length; i++) {
+                var $gallery_item = $(all_current_gallery_items[i]);
+
+                // still a problem with the offset
+                // var top_offset = $gallery_item.offset().top;
+                // isotope sets the 'top' of the div_item from the top of the gallery container
+                var gallery_offset = $gallery_container.offset().top;
+                var item_offset_from_gallery = $gallery_item.css('top');
+                // sometimes will get auto, and therefore giving a NaN for the following addition.
+                // this is just because isotope hasnt finished with this image yet -> once it has, it will call populate_gallery() again!
+                // could fix this by removing existing isotope finish relayout callback, and adding a custom one to do this (check the fold overlap numbers), and then when thats done readd the old one
+
+                var top_offset = parseInt(gallery_offset) + parseInt(item_offset_from_gallery);
+
+                var image_height = $gallery_item.outerHeight(true);
+
+                var gallery_item_bottom_offset = top_offset + image_height; // includes margins
+
+                console.log("Test an image-------------");
+                console.log($gallery_item);
+                console.log("Viewport height: " + viewport_height);
+                console.log("Bottom offset: " + gallery_item_bottom_offset + " (" + gallery_offset +  " + " + item_offset_from_gallery + " (=" + top_offset + ") + " + image_height + ")");
+
+
+
+                if (gallery_item_bottom_offset >= viewport_height) {
+                    number_of_images_overlapping_the_fold++;
+                    console.log("Offset below viewport!");
+                }
+
+
+                console.log("Number of fold images: " + number_of_images_overlapping_the_fold);
+            }
+
+            // check if enough images overlap the fold to 
+            // cover each column
+            if(number_of_images_overlapping_the_fold >= number_of_columns()) {
+                // gallery populated over fold, but is minimum number of photos satisfied?
+                if(all_current_gallery_items.length < minimum_number_of_images) {
+                  return false;
+                } else {
+                  return true;
+                } 
+            } else {
+              return false;
+            }
+        }
+
+
+
+        function get_X_Images(number_of_photos_to_add) {
+             var images_to_add = '';
+              
+              for (var i = 0; i < number_of_photos_to_add; i++) {
+                  var next_image_html = getImageHTML();
+
+                  if(!next_image_html) { // have run out of images
+                    if(images_to_add === '') {
+                        // no new images at all!
+                        return false;
+                    } else {
+                        // some images to return
+                        break;
+                    }
+                  } else {
+                      images_to_add += next_image_html;
+                  }
+
+              }
+
+              console.log("Finished collecting subset of images");
+              
+              return $(images_to_add); // returns images html as jquery object            
+        }
+
+
+
         function getImage() {
+          var result = getImageHTML();
+            if(result) {
+                return $(result);
+            } else {
+                return false;
+            }
+            
+        }
+
+        function getImageHTML() {
             // pop first element off list
             if(all_image_array.length == 0) {
+              console.log("getImage: No more images left!");
                 return false;
             } else {
                 var image_src = all_image_array.shift();
@@ -106,10 +292,10 @@
                                   "<img src='" + image_src + 
                                   "' /></div>";
                 return image_html;
-            }
+            }          
         }
 
-        $.fn.isotopeImagesReveal = function( $items ) {
+        $.fn.isotopeImagesReveal = function( $items  ) {
             var iso = this.data('isotope'); // allows access to isotope inner methods
             
             var itemSelector = iso.options.itemSelector; // itemselector is the class name of the divs that contain each image
@@ -119,6 +305,7 @@
             
             // append all images to container 
             this.append( $items ); // 'this' is the div containing isotope 
+            console.log("[isotopeImagesReveal] Image appended");
             
             $items.imagesLoaded().progress( function(imgLoad, image) { 
                 // progress is a built in jQuery function, called each time an item is loaded.
@@ -131,10 +318,54 @@
                 iso.appended( $item ); // make isotope aware of the appended image
 
                 $('.grid').isotope('layout'); // iso.appended not enough - seem to have to recalculate isotope layout...
+                console.log("[isotopeImagesReveal] Grid relaid out");
+
+                // populate_gallery();
+            });
+
+            $items.imagesLoaded().always(function( instance ) {
+                  // console.log('all images loaded');
+                  // callback
+                  // populate_gallery();
+
             });
             
             return this; // return the div containing isotope
           };
+
+        
+
+        (function($,sr){
+
+            // debouncing function from John Hann
+            // http://unscriptable.com/index.php/2009/03/20/debouncing-javascript-methods/
+            var debounce = function (func, threshold, execAsap) {
+                var timeout;
+
+                return function debounced () {
+                    var obj = this, args = arguments;
+                    function delayed () {
+                        if (!execAsap)
+                            func.apply(obj, args);
+                        timeout = null;
+                    };
+
+                    if (timeout)
+                        clearTimeout(timeout);
+                    else if (execAsap)
+                        func.apply(obj, args);
+
+                    timeout = setTimeout(delayed, threshold || 200);
+                };
+            }
+            // smartresize 
+            jQuery.fn[sr] = function(fn){  return fn ? this.bind('resize', debounce(fn)) : this.trigger(sr); };
+
+          })(jQuery,'smartresize');
+  
+    
+
+        
 
 
 
@@ -164,7 +395,7 @@
    	    <div class="grid">
    		     <noscript>
        			{% for picture in page.pictures %}
-                <div class="grid-item">
+                <div class="grid-item" style="float:left;">
                   {% image picture.image width-500 %}
                 </div>
        			{% endfor %}
