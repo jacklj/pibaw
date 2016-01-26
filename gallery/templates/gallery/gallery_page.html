@@ -62,7 +62,8 @@
                 return 5;
             }
         }
-  
+
+
 
 
         $(document).ready(function() {
@@ -92,38 +93,16 @@
               );
 
 
-            
-            // If we detect a viewport resize, may have to add more images too (so that the same conditions are met as above)
-            // dont need to as horizontal is dealt with by isotope, vertical by scroll detector?
-            $(window).resize(function () { 
-              // debounce this
-              console.log("~~~~~~resize detected");
-              original_viewport_height = $(window).height();
-              // populate_gallery();
-              
-
-
-
-              // $gallery_container.one( 'arrangeComplete', function() {
-              //       console.log('*********arrange done, just this one time');
-              //       original_viewport_height = $(window).height();
-              //       populate_gallery();
-
-              // });
-
-            });
-
-            $(window).smartresize(function(){
-                // code that takes it easy...
-                console.log("~~~~ SMART RESIZE");
-            });
-
             // If the user scrolls near bottom of page, add 2 or 3 more layers of images
+
+            // only after all initial images loaded
+            // and debounce
+            
             $(window).scroll(function() { // debounce or throttle? maybe throttle so whilst still moving it works
                 console.log("Scrolling...");
                    if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
                        console.log("Near bottom");
-                       var $images = get_X_Images(number_of_columns());
+                       var $images = get_X_Images(2*number_of_columns());
                        $isotope_container.isotopeImagesReveal($images );
 
                    }
@@ -133,20 +112,6 @@
             // PS could change picture 'showing' animation, or at least have a grey/light black placeholder where image will load (must be same size as image!)
 
             
-
-
-
-            // add more photos when click button
-            $('.add_images').click( function() {
-              console.log("Number of columns: " + number_of_columns());
-                var $subset_of_photos = get_next_subset_of_photos();
-                if($subset_of_photos) {
-                  $isotope_container.isotopeImagesReveal( $subset_of_photos );
-                } else {
-                  console.log("we're out of images.....");
-                }
-            });
-
         });
         
 
@@ -388,8 +353,6 @@
             </h1>
         </div>
     </div>
-
-    <button class="add_images">Add pics</button>
 
     {% if page.pictures %} 
    	    <div class="grid">
