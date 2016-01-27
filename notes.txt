@@ -1,6 +1,4 @@
-0. scroll to bottom detection:
-	1. only after all initial images loaded
-    2. and debounce
+
 
 
 1. on homepage, in bottom left box could have about, contact, conversations. About and contact are on the homepage too, it auto scrolls down to them, or slides them in from the right of something (leaving a bit of the orignal homepage exposed on the left, perhaps dimmed, so you can click on that to go back to it (with an arrow too probably so its obvious))
@@ -8,6 +6,8 @@
 (the box containing the menu could be black and white stripes)
 
 2. remove hover images
+
+3. breakpoints on homepage should match breakpoints in galery?
 
 3. back button on gallery pages (little minimalist arrow to left of title?)
 
@@ -19,3 +19,4 @@
 
 6. arty 404
 
+7. scroll to bottom -> add enough pictures so that fold is covered again

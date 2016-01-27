@@ -41,6 +41,8 @@
 
         var minimum_number_of_images = 3;
 
+        var first_populated_flag = false;
+
         var $gallery_container;
         var $isotope_container;
         var original_viewport_height = $(window).height();
@@ -82,6 +84,8 @@
             // Initially, populate gallery
             populate_gallery();
 
+
+
             // on horizontal page resize, iosotope recalculates layout
             // -> use this to trigger check if repopulation of gallery if necessary
             $isotope_container.on( 'layoutComplete',
@@ -96,17 +100,31 @@
             // If the user scrolls near bottom of page, add 2 or 3 more layers of images
 
             // only after all initial images loaded
-            // and debounce
-            
-            $(window).scroll(function() { // debounce or throttle? maybe throttle so whilst still moving it works
-                console.log("Scrolling...");
-                   if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
-                       console.log("Near bottom");
-                       var $images = get_X_Images(2*number_of_columns());
-                       $isotope_container.isotopeImagesReveal($images );
+            // and throttled
 
-                   }
+            // instead of 2 or 3 more layers, why not add enough so that the fold is covered again?
+
+            var didScroll = false;
+
+            $(window).scroll(function() {
+              didScroll = true;
             });
+
+            setInterval(function() {
+                // throttle so whilst still moving it works
+                if(didScroll) {
+                    // there has been scrolling in the last 250 ms
+                    didScroll = false;
+                    if(first_populated_flag) {
+                        if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+                            console.log("Near bottom");
+                            var $images = get_X_Images(2*number_of_columns());
+                            $isotope_container.isotopeImagesReveal($images );
+
+                        }
+                    }
+                }
+            }, 300); // fires every 300 ms!
 
 
             // PS could change picture 'showing' animation, or at least have a grey/light black placeholder where image will load (must be same size as image!)
@@ -118,6 +136,7 @@
         function populate_gallery() {
             if (is_gallery_populated_enough_to_cover_viewport()) {
                 console.log("GALLERY POPULATED!");
+                first_populated_flag = true;
                 // turn off layout handler? but then wont catch resizes
                 return true;
             } else {
