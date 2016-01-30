@@ -1,22 +1,37 @@
 
 
-
+ASAP
 1. on homepage, in bottom left box could have about, contact, conversations. About and contact are on the homepage too, it auto scrolls down to them, or slides them in from the right of something (leaving a bit of the orignal homepage exposed on the left, perhaps dimmed, so you can click on that to go back to it (with an arrow too probably so its obvious))
+
+or
+==
+
+nav is little floating icon in top right, when you click on it the nav spreads out from it like a little HUD menu
+or: burger menu, when you hover a very simple text nav strip appears from top of page
+
 
 (the box containing the menu could be black and white stripes)
 
-2. remove hover images
-
-3. breakpoints on homepage should match breakpoints in galery?
-
-3. back button on gallery pages (little minimalist arrow to left of title?)
-
-4. click on images in gallery to get fullsize
 
 5. sort domain
 
+4. click on images in gallery to get fullsize
+
+3. back button on gallery pages (little minimalist arrow to left of title?)
+
+
+
+
+
+
+
+FUTURE
 5. for noscript need new styles (separate sylesheet?) for imaes - keep it simple
 
 6. arty 404
 
 7. scroll to bottom -> add enough pictures so that fold is covered again
+
+8. is 300 ms throttle too much? Does throttle have to fire all the time?
+
+3. breakpoints on homepage should match breakpoints in galery?

@@ -24,22 +24,19 @@
 		                <div class="title_black">in Black and White</div>
 			</a>
 
-			<a class="home_panel two" href="/food/">
-				<div class="content">
-					Food
-				</div>
-			</a>
+			{% for gallery in page.galleries %}
+		  			
+		  			{% image gallery.main_image fill-400x400 as bg_img %}
+		  		
+					<a class="home_panel" href="{{ gallery.slug }}" style="background-image: url({{ bg_img.url }});">
+						<div class="content">
+							{{ gallery.page_title }}
+						</div>
+					</a>
 
-		<!-- </div> -->
+		  	{% endfor %}
 
-	  	<!-- <div class="home_row_two"> -->
-
-		  	<a class="home_panel three" href="/landscapes/">
-		  		<div class="content">
-	  				Landscapes
-	  			</div>
-	  		</a>
-
+	  		
 			<a class="home_panel four" href="/about/">
 				<div class="content">
 					About
@@ -50,5 +47,7 @@
 
   	</div> <!-- home_container -->
 
+
+  	
 
 {% endblock %}

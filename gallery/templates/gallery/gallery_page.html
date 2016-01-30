@@ -118,7 +118,7 @@
                     if(first_populated_flag) {
                         if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
                             console.log("Near bottom");
-                            var $images = get_X_Images(2*number_of_columns());
+                            var $images = get_X_Images(number_of_columns());
                             $isotope_container.isotopeImagesReveal($images );
 
                         }
@@ -366,8 +366,8 @@
     <div class="container">
         <div class="row">
             <h1>
-                <div class="title_left">{{ page.title_left}}</div>
-                <div class="title_right">{{ page.title_right}}</div>
+                <div class="title_left">{{ page.page_title}}</div>
+                <div class="title_right">in Black and White</div>
 
             </h1>
         </div>

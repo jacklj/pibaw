@@ -1,3 +1,8 @@
+/*home css .. for now whilst the real file cant be found... */
+body {
+	min-height: 850px;
+}
+
 .home_container {
 /*	position: absolute;
 	top: 50%;
@@ -16,6 +21,9 @@
 }
 
 @media (max-width: 800px) {
+	body {
+		min-height: none;
+	}	
 	.home_container {
 		margin:0px;
 		width:100%;
@@ -38,10 +46,10 @@ a.home_panel {
 	display:block;
 	position:relative;
 	background-color: rgb(230,230,235);
-	height:48%;
-	width:48%;
+	height:49%;
+	width:49%;
 
-	margin:1%;
+	margin:0.5%;
 	padding:0px;
 
 	text-align: center;
@@ -53,11 +61,11 @@ a.home_panel {
 
 	color:white;
 
-	text-shadow: 2px 2px 10px black,
-	2px 2px 20px black;
+	/*text-shadow: 2px 2px 10px black,
+	2px 2px 20px black;*/
 
 	font-size: 2.6em;
-	font-weight: 400;
+	font-weight: 500;
 	text-transform: uppercase;
 	letter-spacing: 0.08em;
 
@@ -67,15 +75,23 @@ a.home_panel {
 a.home_panel:link,
 a.home_panel:visited {
 	text-decoration: none;
+	outline: 0;
 
 }
 
 a.home_panel:hover,
 a.home_pane:active,
 a.home_pane:focus {
-	text-decoration: none;
+	text-decoration: underline;
 	outline: 0;
 
+	/*font-size: 2.7em;*/
+}
+
+a.home_panel:hover .content,
+a.home_pane:active .content,
+a.home_pane:focus .content {
+	/*border: 5px solid white;*/
 }
 
 
@@ -89,6 +105,12 @@ a.one {
 	text-shadow:none;
 
 	font-size: 2.2em;
+}
+
+
+a.one:hover, a.one:active, a.one:focus {
+	font-size: 2.2em;
+	text-decoration: none;
 }
 
 div.title_white {
@@ -168,7 +190,7 @@ a.two {
 a.two:hover,
 a.two:active,
 a.two:focus {
-	background-image: url("../images/Bay-Leaves-40px-black-border-square-inverted.jpeg");
+	/*background-image: url("../images/Bay-Leaves-40px-black-border-square-inverted.jpeg");*/
 
 }
 
@@ -181,7 +203,7 @@ a.three {
 a.three:hover,
 a.three:active,
 a.three:focus {
-	background-image: url("../images/Ardross-Gate-Silver-Efex-square-inverted.jpeg");
+	/*background-image: url("../images/Ardross-Gate-Silver-Efex-square-inverted.jpeg");*/
 
 	}
 
@@ -189,10 +211,18 @@ a.four {
 
 }
 
-a.home_panel.content {
+/*here i am*/
+a.home_panel .content {
 	position: relative;
   	top: 50%;
   	transform: translateY(-50%);
+
+  	margin: 0px;
+	padding:0px;
+
+	/*border:5px solid blue;*/
+
+  	
 	
 }
 
@@ -208,6 +238,9 @@ a.home_panel.content {
 		width:100%;
 		height:100vw;
 
+		margin-top: 4px;
+
+
 		display:block;
 		float:none;
 
@@ -218,12 +251,6 @@ a.home_panel.content {
 
 
 
-.content {
-	position: relative;
-	top: 50%;
-	transform: translateY(-50%);
-	margin: 0px;
-	padding:0px;
-}
+
 
 
