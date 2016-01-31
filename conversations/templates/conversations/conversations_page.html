@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block extra_css %}
+
+    <link rel="stylesheet" href="{% static 'css/all_conversations.css' %}" />
+
+
+{% endblock %}
+
+{% block extra_js %}
+
+{% endblock %}
+
+
+{% block content %}
+ 
+    {# {% include "navbar.html" %} #}
+   
+
+    <div class="container">
+        
+        <div class="row">
+            <h1>
+                <div class="title_left">
+                    {{ page.page_title}}
+                </div>
+                <div class="title_right">
+                    in Black and White
+                </div>
+            </h1>
+        </div>
+
+        {% if page.intro %}
+            <div class="row intro">
+                {{ page.intro|richtext }}
+            </div>
+        {% endif %}
+
+    </div>
+
+    {% if page.conversations %}
+        {% for conversation in page.conversations %}
+   	        <div class="container conversation">
+                <h2>{{ conversation.title }}</h2>
+                <h3 class="date">{{ conversation.date }}</h3>
+
+                <div class="content">
+                    {{ conversation.body }}
+                </div>
+
+            </div>
+       	{% endfor %}
+   	{% endif %}
+
+
+
+{% endblock %}
+
+

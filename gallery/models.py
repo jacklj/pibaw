@@ -17,6 +17,11 @@ from wagtail.wagtailsearch import index
 
 # Create your models here.
 
+class GalleriesPage(Page):
+	parent_page_types = ['home.HomePage']
+	subpage_types = ['gallery.GalleryPage']
+
+
 class GalleryPage(Page):
 	page_title = models.CharField(max_length=255, help_text="Left half of title", blank=True)
 	# title_right = models.CharField(max_length=255, help_text="Right half of title", blank=True)
@@ -42,6 +47,9 @@ class GalleryPage(Page):
 		# FieldPanel('title_right'),
 		InlinePanel('gallery_pictures', label="Pictures"),
 	]
+
+	parent_page_types = ['gallery.GalleriesPage']
+	subpage_types = []
 
 
 class Picture(Orderable):

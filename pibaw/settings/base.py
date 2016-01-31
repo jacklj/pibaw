@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'gallery',
+    'conversations',
 ]
 
 MIDDLEWARE_CLASSES = [

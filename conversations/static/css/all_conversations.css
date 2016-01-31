@@ -1,0 +1,135 @@
+html {
+	min-height: none;
+}
+
+body {
+	text-align:center;
+	position:relative;
+
+	min-height: none;
+}
+
+
+h1 {
+	display:inline-block;
+	margin-left: auto;
+	margin-right: auto;
+	/*background-color: red;*/
+	
+	padding:none;
+
+	margin-top:70px;
+	margin-bottom:50px;
+
+	text-transform: uppercase;
+	font-weight: 200;
+	letter-spacing: 0.08em;
+	font-size: 2.2em;
+	line-height: 1.8em;
+
+	/*text-align: center;*/
+}
+
+h1 div.title_left {
+	display:block;
+	float:left;
+
+	padding-left: 14px;
+	padding-right: 8px;
+
+	padding-top: 3px;
+	padding-bottom: 3px;
+
+	background-color: white;
+
+	border:3px solid black;
+
+}
+
+h1 div.title_right {
+	display:block;
+	float:left;
+
+	background-color: black;
+	color:white;
+	padding-left: 10px;
+	padding-right: 14px;
+
+
+	padding-top: 3px;
+	padding-bottom: 3px;
+
+	border:3px solid black;
+
+}
+
+@media (max-width: 600px) {
+	
+	h1 div.title_left,
+	h1 div.title_right {
+		float:none;
+		margin-left:auto;
+		margin-right: auto;
+	}
+}
+
+@media (max-width: 500px) {
+	
+	h1 div.title_left,
+	h1 div.title_right {
+		font-size:0.8em;
+	}
+}
+
+
+
+.intro {
+	font-size: 1.5em;
+	text-align: left;
+	padding:15px; /* not sure why this was removed*/
+}
+
+.conversation {
+	text-align: left;
+	border-top: 1px solid rgb(220,220,220);
+	padding-top:20px;
+	margin-top: 30px;
+	margin-bottom: 100px;
+}
+
+.conversation h2 {
+	margin:0px;
+	margin-top: 5px;
+	margin-bottom:5px;
+	padding:0px;
+}
+
+.conversation h3.date {
+	font-size: 1.2em;
+	
+	padding:0px;
+	margin:0px;
+	margin-bottom:30px;
+}
+
+.conversation .block-paragraph {
+	margin-bottom: 20px;
+
+}
+
+.conversation .block-heading {
+	font-size: 1.3em;
+	font-weight: bold;
+	margin-top: 30px;
+}
+
+.conversation .block-image {
+
+}
+
+.conversation img {
+	max-width: 100%;
+	height:auto;
+}
+
+

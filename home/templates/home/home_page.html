@@ -28,7 +28,7 @@
 		  			
 		  			{% image gallery.main_image fill-400x400 as bg_img %}
 		  		
-					<a class="home_panel" href="{{ gallery.slug }}" style="background-image: url({{ bg_img.url }});">
+					<a class="home_panel" href="{% pageurl gallery %}" style="background-image: url({{ bg_img.url }});">
 						<div class="content">
 							{{ gallery.page_title }}
 						</div>
@@ -37,11 +37,17 @@
 		  	{% endfor %}
 
 	  		
-			<a class="home_panel four" href="/about/">
-				<div class="content">
-					About
-				</div>
-			</a>
+	  		{% for conversations in page.conversations %}
+					
+					{% image conversations.main_image fill-400x400 as bg_img %}
+		  		
+					<a class="home_panel" href="{% pageurl conversations %}" style="background-image: url({{ bg_img.url }});">
+						<div class="content">
+							{{ conversations.page_title }}
+						</div>
+					</a>
+
+			{% endfor %}
 
 		<!-- </div> -->
 
