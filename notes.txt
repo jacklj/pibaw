@@ -1,29 +1,13 @@
-
-
 ASAP
-1. on homepage, in bottom left box could have about, contact, conversations. About and contact are on the homepage too, it auto scrolls down to them, or slides them in from the right of something (leaving a bit of the orignal homepage exposed on the left, perhaps dimmed, so you can click on that to go back to it (with an arrow too probably so its obvious))
+1. add contact and (i) info floating icons to top right of every page
 
-or
-==
+2. Favicon
 
-nav is little floating icon in top right, when you click on it the nav spreads out from it like a little HUD menu
+3. click on images to get fullsize
 
-or
----
- burger menu, when you hover a very simple text nav strip appears from top of page
- 
- or
- ---
-just conversations, no about or contact page. just contact icon(s) hovering top left on all pages. Could have an (i) for info icon too, with a little translucent modal about the page, with a wikipedia link to platinum printing
+4. domain? naked domain forwarding?
 
-(the box containing the menu could be black and white stripes)
-
-
-5. sort domain
-
-4. click on images in gallery to get fullsize
-
-3. back button on gallery pages (little minimalist arrow to left of title?)
+5. back button on gallery pages (little minimalist arrow to left of title?)
 
 
 
@@ -32,7 +16,7 @@ just conversations, no about or contact page. just contact icon(s) hovering top 
 
 
 FUTURE
-5. for noscript need new styles (separate sylesheet?) for imaes - keep it simple
+5. for noscript need new styles (separate sylesheet?) for images - keep it simple
 
 6. arty 404
 
