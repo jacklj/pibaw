@@ -62,10 +62,10 @@ a.home_panel {
 	color:white;
 
 
-	font-size: 2.6em;
-	font-weight: 500;
+	font-size: 2.5em;
+	font-weight: 400;
 	text-transform: uppercase;
-	letter-spacing: 0.08em;
+	letter-spacing: 0.03em;
 
 	background-size: cover;
 
@@ -78,7 +78,7 @@ a.home_panel {
 		margin:1%;
 
 		font-size: 2.3em;
-		font-weight: 500;
+		font-weight: 400;
 		text-transform: uppercase;
 		letter-spacing: 0.01em;
 
@@ -104,13 +104,22 @@ a.home_panel {
 		display:block;
 		float:none;
 
-		font-size: 2.6em;
-		font-weight: 500;
-		text-transform: uppercase;
-		letter-spacing: 0.08em;
+		font-size: 2.5em;
+		font-weight: 400;
+		letter-spacing: 0.04em;
 
 	}
 }
+
+
+@media (max-width: 500px) {
+	a.home_panel {
+		font-size: 2.3em;
+		font-weight: 400;
+		letter-spacing: 0.01em;
+	}
+}
+
 
 a.home_panel:link,
 a.home_panel:visited {
