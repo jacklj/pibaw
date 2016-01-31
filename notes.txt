@@ -1,13 +1,11 @@
 ASAP
-1. add contact and (i) info floating icons to top right of every page
+1. add contact and (i) info floating icons to top right of every page + home/back icon on top left. All these icons can animate move down from the top after document loaded, and bounce cutely
 
 2. Favicon
 
 3. click on images to get fullsize
 
 4. domain? naked domain forwarding?
-
-5. back button on gallery pages (little minimalist arrow to left of title?)
 
 
 
