@@ -5,7 +5,10 @@ from wagtail.wagtailcore.fields import RichTextField, StreamField
 from wagtail.wagtailcore import blocks
 
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailimages.blocks import ImageChooserBlock
+
+
 # Create your models here.
 class ConversationsPage(Page):
 	page_title = models.CharField(max_length=255)
@@ -20,6 +23,7 @@ class ConversationsPage(Page):
 
 	content_panels = Page.content_panels + [
 	    FieldPanel('page_title'),
+	    ImageChooserPanel('main_image'),
 	    FieldPanel('intro'),
 	]
 
