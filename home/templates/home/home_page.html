@@ -24,30 +24,33 @@
 		                <div class="title_black">in Black and White</div>
 			</a>
 
-			{% for gallery in page.galleries %}
-		  			
-		  			{% image gallery.main_image fill-400x400 as bg_img %}
-		  		
-					<a class="home_panel" href="{% pageurl gallery %}" style="background-image: url({{ bg_img.url }});">
-						<div class="content">
-							{{ gallery.page_title }}
-						</div>
-					</a>
+			{% if page.galleries %}
+				{% for gallery in page.galleries %}
+			  			
+			  			{% image gallery.main_image fill-400x400 as bg_img %}
+			  		
+						<a class="home_panel" href="{% pageurl gallery %}" style="background-image: url({{ bg_img.url }});">
+							<div class="content">
+								{{ gallery.page_title }}
+							</div>
+						</a>
 
-		  	{% endfor %}
+			  	{% endfor %}
+			{% endif %}
 
-	  		
-	  		{% for conversations in page.conversations %}
-					
-					{% image conversations.main_image fill-400x400 as bg_img %}
-		  		
-					<a class="home_panel" href="{% pageurl conversations %}" style="background-image: url({{ bg_img.url }});">
-						<div class="content">
-							{{ conversations.page_title }}
-						</div>
-					</a>
+	  		{% if page.conversations %}
+		  		{% for conversations in page.conversations %}
+						
+						{% image conversations.main_image fill-400x400 as bg_img %}
+			  		
+						<a class="home_panel" href="{% pageurl conversations %}" style="background-image: url({{ bg_img.url }});">
+							<div class="content">
+								{{ conversations.page_title }}
+							</div>
+						</a>
 
-			{% endfor %}
+				{% endfor %}
+			{% endif %}
 
 		<!-- </div> -->
 
