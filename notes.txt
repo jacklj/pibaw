@@ -7,8 +7,14 @@ or
 ==
 
 nav is little floating icon in top right, when you click on it the nav spreads out from it like a little HUD menu
-or: burger menu, when you hover a very simple text nav strip appears from top of page
 
+or
+---
+ burger menu, when you hover a very simple text nav strip appears from top of page
+ 
+ or
+ ---
+just conversations, no about or contact page. just contact icon(s) hovering top left on all pages. Could have an (i) for info icon too, with a little translucent modal about the page, with a wikipedia link to platinum printing
 
 (the box containing the menu could be black and white stripes)
 

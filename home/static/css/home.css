@@ -46,10 +46,10 @@ a.home_panel {
 	display:block;
 	position:relative;
 	background-color: rgb(230,230,235);
-	height:49%;
-	width:49%;
+	height:44%;
+	width:44%;
 
-	margin:0.5%;
+	margin:3%;
 	padding:0px;
 
 	text-align: center;
@@ -69,7 +69,32 @@ a.home_panel {
 	text-transform: uppercase;
 	letter-spacing: 0.08em;
 
+	background-size: cover;
 
+}
+
+@media (max-width: 800px) {
+	a.home_panel {
+		height:48%;
+		width:48%;
+		margin:1%;
+
+	}
+}
+
+@media (max-width: 600px) {
+	a.home_panel {
+		margin:0px;
+		width:94%;
+		height:94vw;
+
+		margin: 3%;
+
+
+		display:block;
+		float:none;
+
+	}
 }
 
 a.home_panel:link,
@@ -105,6 +130,8 @@ a.one {
 	text-shadow:none;
 
 	font-size: 2.2em;
+
+	/*border:;*/
 }
 
 
@@ -168,7 +195,7 @@ div.title_black {
 
 @media (max-width: 600px) {
 	div.title_white {
-		border:0px;
+		/*border:0px;*/
 	}
 	
 }
@@ -232,20 +259,7 @@ a.home_panel .content {
 
 
 
-@media (max-width: 600px) {
-	a.home_panel {
-		margin:0px;
-		width:100%;
-		height:100vw;
 
-		margin-top: 4px;
-
-
-		display:block;
-		float:none;
-
-	}
-}
 
 
 

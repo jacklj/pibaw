@@ -142,23 +142,23 @@ h1 div.title_right {
 
 	width:99%; /* fallback */
 	/* Firefox */
-	width: -moz-calc(100% - 7px);
+	width: -moz-calc(100% - 4px);
 	/* WebKit */
-	width: -webkit-calc(100% - 7px);
+	width: -webkit-calc(100% - 4px);
 	/* Opera */
-	width: -o-calc(100% - 7px);
+	width: -o-calc(100% - 4px);
 	/* Standard */
-	width: calc(100% - 7px);
+	width: calc(100% - 4px);
 
 
 	height:100%;
 
 	padding:0px;
 	margin-top: 0px;
-	margin-bottom:7px;
+	margin-bottom:4px;
 
-	margin-left:3px;
-	margin-right:4px;
+	margin-left:2px;
+	margin-right:2px;
 }
 
 .grid-item--width2 { width: 50%; }
