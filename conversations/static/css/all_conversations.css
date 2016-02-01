@@ -84,7 +84,7 @@ h1 div.title_right {
 
 
 .intro {
-	font-size: 1.5em;
+	font-size: 1.4em;
 	text-align: left;
 	padding:15px; /* not sure why this was removed*/
 }
@@ -98,6 +98,7 @@ h1 div.title_right {
 }
 
 .conversation h2 {
+	font-size: 2.7em;
 	margin:0px;
 	margin-top: 5px;
 	margin-bottom:5px;
@@ -105,7 +106,9 @@ h1 div.title_right {
 }
 
 .conversation h3.date {
-	font-size: 1.2em;
+	font-size: 1.1em;
+	font-weight: 400;
+
 	
 	padding:0px;
 	margin:0px;
@@ -114,12 +117,13 @@ h1 div.title_right {
 
 .conversation .block-paragraph {
 	margin-bottom: 20px;
+	font-size: 1.2em;
 
 }
 
 .conversation .block-heading {
-	font-size: 1.3em;
-	font-weight: bold;
+	font-size: 1.7em;
+	font-weight: 500;
 	margin-top: 30px;
 }
 
