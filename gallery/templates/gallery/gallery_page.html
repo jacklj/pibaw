@@ -145,6 +145,15 @@
                 type: 'image',
                 image: {
                     verticalFit: false
+                },
+                callbacks: {
+                    open: function() {
+                        $("body").css("overflow", "hidden");    
+                    },
+                    beforeClose: function() {
+                        $("body").css("overflow", "visible");
+                    }
+                    
                 }
                 // gallery:{ // doesnt really make sense as not all images are loaded... maybe all thumbnails should load, but not be revealed until scroll down 
                 //     enabled:true
