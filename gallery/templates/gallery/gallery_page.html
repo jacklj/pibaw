@@ -142,7 +142,10 @@
 
             $('.grid').magnificPopup({
                 delegate: 'div', // child items selector, by clicking on it popup will open
-                type: 'image'
+                type: 'image',
+                image: {
+                    verticalFit: false
+                }
                 // gallery:{ // doesnt really make sense as not all images are loaded... maybe all thumbnails should load, but not be revealed until scroll down 
                 //     enabled:true
                 // }
