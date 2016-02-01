@@ -30,7 +30,7 @@ class ConversationsPage(Page):
 	@property
 	def conversations(self):
 		if ConversationPage.objects.all():
-			return ConversationPage.objects.all()
+			return ConversationPage.objects.all().order_by('-date')
 		else:
 			return False
 	
