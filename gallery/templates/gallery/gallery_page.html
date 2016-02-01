@@ -3,13 +3,18 @@
 {% load static wagtailcore_tags wagtailimages_tags %}
 
 {% block extra_css %}
+    
+    <link rel="stylesheet" href="{% static 'magnific-popup/magnific-popup.css' %}" />
 
     <link rel="stylesheet" href="{% static 'css/gallery.css' %}" />
+
+   
 
 
 {% endblock %}
 
 {% block extra_js %}
+    <script src="{% static 'magnific-popup/jquery.magnific-popup.min.js' %}"></script>
 
     <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
     <script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
@@ -28,9 +33,14 @@
 
         {% if page.pictures %} 
             {% for picture in page.pictures %}
-                 {% image picture.image width-500 as picture %}
-                 all_image_array.push("{{ picture.url }}");
-                 console.log("Image: " + "{{ picture.url }}");
+                {% image picture.image width-500 as thumb %}
+                {% image picture.image original as fullsize %}
+                 
+                all_image_array.push({
+                    'thumbnail' : '{{ thumb.url }}',
+                    'fullsize' : '{{ fullsize.url }}'
+                });
+                 console.log("Image loaded: thumb[{{ thumb.url }}] fullsize[{{ fullsize.url }}]");
             {% endfor %}
         {% endif %}
 
@@ -128,6 +138,16 @@
 
 
             // PS could change picture 'showing' animation, or at least have a grey/light black placeholder where image will load (must be same size as image!)
+
+
+            $('.grid').magnificPopup({
+                delegate: 'div', // child items selector, by clicking on it popup will open
+                type: 'image'
+                // gallery:{ // doesnt really make sense as not all images are loaded... maybe all thumbnails should load, but not be revealed until scroll down 
+                //     enabled:true
+                // }
+                // other options
+            });
 
             
         });
@@ -270,10 +290,14 @@
               console.log("getImage: No more images left!");
                 return false;
             } else {
-                var image_src = all_image_array.shift();
+                var image_dict = all_image_array.shift();
 
-                var image_html =  "<div class='grid-item'>" + 
-                                  "<img src='" + image_src + 
+                var thumb_src = image_dict['thumbnail'];
+                var fullsize_src = image_dict['fullsize'];
+
+                var image_html =  "<div class='grid-item' data-mfp-src='" 
+                + fullsize_src + "'>" + 
+                                  "<img src='" + thumb_src + 
                                   "' /></div>";
                 return image_html;
             }          

@@ -1,10 +1,6 @@
 ASAP
 
 
-
-
-3. click on images to get fullsize
-
 6. link from dads website, and mine
 
 
@@ -13,6 +9,9 @@ ASAP
 
 
 FUTURE
+
+1. fullsize image 'gallery' with next/prev arrows: // doesnt really make sense as not all images are loaded... maybe all thumbnails should load, but not be revealed until scroll down 
+
 5. for noscript need new styles (separate sylesheet?) for images - keep it simple
 
 6. arty 404
