@@ -1,15 +1,9 @@
 ASAP
 
 
-1.5. change order of conversations into latest first
 
-2. Favicon
 
 3. click on images to get fullsize
-
-4. domain? naked domain forwarding?
-
-5. metatags
 
 6. link from dads website, and mine
 
@@ -28,3 +22,5 @@ FUTURE
 8. is 300 ms throttle too much? Does throttle have to fire all the time?
 
 3. breakpoints on homepage should match breakpoints in galery?
+
+7. change favicon?

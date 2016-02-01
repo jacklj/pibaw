@@ -9,22 +9,24 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-        <meta name="description" content="" />
-        <meta name="keywords" content="" />
-        <meta name="author" content="Jack Lawrence-Jones" />
+        <meta name="description" content="Pictures in Black and White. This site is a project of John Lawrence-Jones, a still life photographer based in London." />
+        <meta name="keywords" content="Photographer, Platinum Print, Platinum Printing, Platinum, Print, Black and White, Photographer, Professional Photographer" />
+        <meta name="author" content="John Lawrence-Jones" />
 
 
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+
+
         <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_suffix %}{% endblock %}</title>
 
 
         {# Favicon #}
-        <!-- 
-        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
-        <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
-        -->
+        
+        <link rel="icon" type="image/png" href="{% static 'images/favicons/favicon-32x32.png' %}" sizes="32x32" />
+        <link rel="icon" type="image/png" href="{% static 'images/favicons/favicon-16x16.png' %}" sizes="16x16" />
+        
 
         {# Stylesheets  ----------------------------------#}
 
