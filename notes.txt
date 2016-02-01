@@ -1,5 +1,5 @@
 ASAP
-1. add contact and (i) info floating icons to top right of every page + home/back icon on top left. All these icons can animate move down from the top after document loaded, and bounce cutely
+
 
 1.5. change order of conversations into latest first
 

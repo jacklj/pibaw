@@ -11,7 +11,10 @@ class HomePage(Page):
 	parent_page_types = []
 	subpage_types = ['gallery.GalleriesPage', 'conversations.ConversationsPage']
 
-	@property 
+	def home(self):
+		return True
+
+	
 	def galleries(self):
 		if GalleryPage.objects.all():
 			return GalleryPage.objects.all()
