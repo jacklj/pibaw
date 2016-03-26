@@ -10,7 +10,7 @@ from conversations.models import ConversationsPage
 class HomePage(Page):
 	parent_page_types = []
 	subpage_types = ['gallery.GalleriesPage', 'conversations.ConversationsPage']
-
+	template = 'home/home_page2.html'
 	def home(self):
 		return True
 

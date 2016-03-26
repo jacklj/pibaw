@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block extra_css %}
+
+    <link rel="stylesheet" href="{% static 'css/home2.css' %}" />
+
+{% endblock %}
+
+{% block body_class %}homepage{% endblock %}
+
+{% block content %}
+
+  	<div class="fluid-container home_container">
+
+	  	<div class="left_panel">
+	  		<div class="home_content title">
+	  			<h1>{{ page.title }}</h1>
+	  		</div>
+	  	</div>
+	  	<div class="right_panel">
+	  		<div class="home_content menu">
+	  			{% if page.galleries %}
+	  				<ul>
+
+						{% for gallery in page.galleries %}
+							<li>
+				  			
+				  	
+								<a href="{% pageurl gallery %}">
+									{{ gallery.page_title }}
+								</a>
+							</li>
+
+				  		{% endfor %}
+
+				  		<li>
+							<a href="mailto:john@johnlawrencejones.com">
+								Contact
+							</a>
+						</li>
+				 	</ul>
+				{% endif %}
+	  		</div>
+	  	</div>
+
+  	
+
+
+  	</div> <!-- home_container -->
+
+
+{% endblock %}
