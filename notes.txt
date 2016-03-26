@@ -1,3 +1,17 @@
+DADS Feedback Wed 3rd Feb 2016
+1. front page - dont put text on images. solutions:
+	i. black squares instead of pictures (dads)
+	ii. pictures with writing below on coloured bar (me)
+	iii. simple text list (me)
+
+2. gallery: one photo per screen, with right and left arrows. no zoom for now
+
+3. no conversations
+
+4. when click on main logo on homepage, info page pops up (and info logo)
+
+
+
 ASAP
 
 2. link from dads website, and mine
