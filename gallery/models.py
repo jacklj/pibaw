@@ -22,9 +22,11 @@ class GalleriesPage(Page):
 	subpage_types = ['gallery.GalleryPage']
 
 
+
 class GalleryPage(Page):
 	page_title = models.CharField(max_length=255, help_text="Left half of title", blank=True)
 	# title_right = models.CharField(max_length=255, help_text="Right half of title", blank=True)
+	template = 'gallery/gallery_page2.html'
 
 	main_image = models.ForeignKey(
         'wagtailimages.Image',

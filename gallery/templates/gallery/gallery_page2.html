@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block extra_css %}
+    
+    <link rel="stylesheet" href="{% static 'magnific-popup/magnific-popup.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'css/gallery2.css' %}" />
+
+   
+
+
+{% endblock %}
+
+{% block extra_js %}
+  <!--  <script src="{% static 'magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+
+    <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
+    -->
+
+
+    <!-- fotorama.css & fotorama.js. (requires jQuery 1.8 or later) -->
+    <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB -->
+
+{% endblock %}
+
+
+{% block content %}
+ 
+    {# {% include "navbar.html" %} #}
+   
+
+   <!-- <div class="container title">
+        <div class="row">
+            <h1>
+                <div class="title_left">{{ page.page_title}}</div>
+                <div class="title_right">in Black and White</div>
+
+            </h1>
+        </div>
+    </div> -->
+
+    <div class="fluid-container">
+        {% if page.pictures %} 
+       	    <div class="fotorama" 
+                data-nav="thumbs"
+                data-fit="contain"
+
+                data-width="1000"
+                
+               
+                data-maxheight="94%"
+
+                data-thumbmargin="3"
+              
+                data-keyboard="true"
+                data-swipe="true"
+                 data-arrows="false"
+                data-allowfullscreen="false">
+
+                {% for picture in page.pictures %}
+                    {% image picture.image width-200 as thumb %}
+                    {% image picture.image original as fullsize %}
+                    <a href="{{ fullsize.url }}" data-thumb="{{ thumb.url }}"></a>
+                {% endfor %}
+            </div>
+       	{% endif %}
+    </div>
+
+
+
+{% endblock %}
+
+
