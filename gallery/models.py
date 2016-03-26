@@ -24,17 +24,17 @@ class GalleriesPage(Page):
 
 
 class GalleryPage(Page):
-	page_title = models.CharField(max_length=255, help_text="Left half of title", blank=True)
+	# page_title = models.CharField(max_length=255, help_text="Left half of title", blank=True)
 	# title_right = models.CharField(max_length=255, help_text="Right half of title", blank=True)
 	template = 'gallery/gallery_page2.html'
 
-	main_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
+	# main_image = models.ForeignKey(
+ #        'wagtailimages.Image',
+ #        null=True,
+ #        blank=True,
+ #        on_delete=models.SET_NULL,
+ #        related_name='+'
+ #    )
 
 	@property 
 	def pictures(self):
@@ -44,8 +44,8 @@ class GalleryPage(Page):
 			return False
 
 	content_panels = Page.content_panels + [
-		FieldPanel('page_title'),
-		ImageChooserPanel('main_image'),
+		# FieldPanel('page_title'),
+		# ImageChooserPanel('main_image'),
 		# FieldPanel('title_right'),
 		InlinePanel('gallery_pictures', label="Pictures"),
 	]
@@ -65,6 +65,12 @@ class Picture(Orderable):
         on_delete=models.SET_NULL,
         related_name='+'
     )
+
+	panels = [
+		FieldPanel('title'),
+		FieldPanel('description'),
+		ImageChooserPanel('image'),
+	]
 
 
 	def __str__(self):
