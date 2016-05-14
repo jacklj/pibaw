@@ -6,6 +6,26 @@
 
     <link rel="stylesheet" href="{% static 'css/home2.css' %}" />
 
+    <link rel="stylesheet" href="{% static 'css/lettering.css' %}" />   
+
+    <link href="http://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+
+{% endblock %}
+
+{% block extra_js %}
+	<script src="https://use.fontawesome.com/40008e6ed5.js"></script>
+
+	<script type="text/javascript" src="{% static 'js/jquery.lettering.js'%}"></script>
+
+	<script language="javascript">
+		$(document).ready(function() {
+		  $(".nice").lettering();
+		  $(".nice2").lettering();
+		  $(".nice3").lettering();
+		});
+	</script>
+
+
 {% endblock %}
 
 {% block body_class %}homepage{% endblock %}
@@ -16,7 +36,9 @@
 
 	  	<div class="left_panel">
 	  		<div class="home_content title">
-	  			<h1>{{ page.title }}</h1>
+	  			<h1 class="nice">Pictures</h1>
+	  			<h1 class="nice2">in</h1>
+	  			<h1 class="nice3">Black &amp; White</h1>
 	  		</div>
 	  	</div>
 	  	<div class="right_panel">
@@ -28,17 +50,21 @@
 							<li>
 				  			
 				  	
-								<a href="{% pageurl gallery %}">
-									{{ gallery.title }}
+								<a href="{% pageurl gallery %}" class="box demo-1">
+									<i class="fa fa-arrow-right"></i> 
+									<span> {{ gallery.title }}
+									</span>
 								</a>
 							</li>
 
 				  		{% endfor %}
 
 				  		<li>
-							<a href="mailto:john@johnlawrencejones.com">
-								Contact
-							</a>
+							<a href="mailto:john@johnlawrencejones.com" class="box demo-1">
+									<i class="fa fa-arrow-right"></i> 
+									<span>Contact
+									</span>
+								</a>
 						</li>
 				 	</ul>
 				{% endif %}

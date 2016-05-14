@@ -10,6 +10,9 @@ body {
 	border:0;
 
 	overflow: hidden;
+
+	/*background-color: red;
+	border:1px solid green;*/
 }
 
 @media (max-width: 600px) {
@@ -19,14 +22,20 @@ body {
 
 .left_panel,
 .right_panel {
+	position: relative;
+	display:block;
 
 	width:50%;
 	height:100%;
-	display:block;
+	
 	margin:0;
 	padding:0;
 	border:0;
-	position: relative;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
 }
 
 @media (max-width: 700px) {
@@ -48,8 +57,14 @@ body {
 
 .left_panel {
 	float:left;
-	background-color: black;
 	color: white;
+
+	background-color: black;
+	background:-moz-radial-gradient(center, rgb(33,33,33), black);
+	background:-webkit-gradient(radial, center center, 120, center center, 800, from(rgb(33,33,33)), to(black));
+
+	
+
 
 /*	border:10px solid white;
 	border-right:none;*/
@@ -59,18 +74,23 @@ body {
 	float:right;
 	background-color: white;
 	color:black;
+
 /*	border:10px solid black;
 	border-left: none;*/
 }
 
 .home_content {
-	position: absolute;
+/*	position: absolute;
 	top: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);*/
 
-	/*width:100%;*/
+	max-width:700px;
 
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: auto;
+	margin-bottom: auto; 
 
 
 }
@@ -81,17 +101,27 @@ body {
 	padding-left:20px;
 	padding-right: 20px;
 
-	border:5px solid white;
+	display:inline-block;
+	/*max-width: 450px;*/
+	margin:0 auto;
+
+	/*border:5px solid white;*/
 	
 }
 
 .title h1 {
 	text-transform: uppercase;
-	font-size: 3.7em;
+	/*font-size: 3.7em;*/
 	/*font-size: 2em;*/
 	text-align: center;
 	line-height: 1.65em;
 	font-weight: 300;
+
+	margin-top:10px;
+	margin-bottom:10px;
+	margin-right:10px;
+	margin-left:10px;
+	/*padding:0;*/
 }
 
 @media (max-width: 1200px) {
@@ -101,15 +131,22 @@ body {
 }
 
 .menu {
+	margin-top:20px;
+	margin-bottom:20px;
+	margin-right:20px;
+	margin-left:20px;
 
+	/*border:5px solid black;*/
 }
 
 .menu ul {
 	list-style: none;
 	margin:0;
 	padding:0;
-	text-align: center;
+	text-align: left;
 	line-height: 4em;
+
+
 }
 
 .menu ul li {
@@ -117,13 +154,118 @@ body {
 	padding:0;
 }
 
-.menu ul li a {
-	text-transform: uppercase;
+.menu a {
+	text-transform: lowercase;
 	color:black;
 	font-size: 3.2em;
 	/*font-size: 2em;*/
 	/*text-align: right;*/
 }
+
+.menu a:hover,
+.menu a:active,
+.menu a:focus,
+.menu a:visited {
+		text-decoration: none;
+}
+
+.box{
+  color: #fff;
+  padding: 5px;
+  padding-left: 5px;
+  padding-right: 15px;
+}
+ 
+.box:hover{
+  /*background: black;*/
+  /*color: white;*/ /*#26425E;*/
+}
+ 
+.demo-1 {
+  position: relative;
+  text-decoration: none;
+}
+
+.box i {
+	display:inline-block;
+	font-size: 0.4em;
+	padding-bottom: 0.4em;
+	vertical-align: middle;
+}
+
+.box:hover i {
+	animation: bounce 1s infinite;
+	-webkit-animation: bounce 1s infinite;
+	-moz-animation: bounce 1s infinite;
+	-o-animation: bounce 1s infinite;
+}
+
+@-webkit-keyframes bounce {
+ 0%, 20%, 50%, 80%, 100% {-webkit-transform: translateX(0);} 
+ 40% {-webkit-transform: translateX(10px);}
+ 60% {-webkit-transform: translateX(-10px);}
+}
+ 
+@-moz-keyframes bounce {
+ 0%, 20%, 50%, 80%, 100% {-moz-transform: translateX(0);}
+ 40% {-moz-transform: translateX(10px);}
+ 60% {-moz-transform: translateX(-10px);}
+}
+ 
+@-o-keyframes bounce {
+ 0%, 20%, 50%, 80%, 100% {-o-transform: translateX(0);}
+ 40% {-o-transform: translateX(10px);}
+ 60% {-o-transform: translateX(-10px);}
+}
+@keyframes bounce {
+ 0%, 20%, 50%, 80%, 100% {transform: translateX(0);}
+ 40% {transform: translateX(10px);}
+ 60% {transform: translateX(-10px);}
+}
+ 
+
+/*
+
+.demo-1:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  right: 0;
+ 
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.2s;
+ 
+  -webkit-transition-property: top, left, right, bottom;
+  -moz-transition-property: top, left, right, bottom;
+  -ms-transition-property: top, left, right, bottom;
+  -o-transition-property: top, left, right, bottom;
+  transition-property: top, left, right, bottom;
+
+  text-decoration: none;
+}
+ 
+.demo-1:hover:before, .demo-1:focus:before{
+  -webkit-transition-delay: .1s;
+  -moz-transition-delay: .1s;
+  -ms-transition-delay: .1s;
+  -o-transition-delay: .1s;
+  transition-delay: .1s; 
+ 
+  border: black solid 3px;
+  bottom: -7px;
+  left: -7px;
+  top: -7px;
+  right: -7px;
+
+  text-decoration: none;
+}
+*/
+
 
 
 

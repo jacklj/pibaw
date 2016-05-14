@@ -42,27 +42,26 @@
 
         {# /stylesheets --------------------------------- #}
 
-    </head>
-
-    <body class="{% block body_class %}{% endblock %}">
-        {% wagtailuserbar %}
-
-        {# {% include "menu.html" %} #}
-
-        {% block content %}{% endblock %}
-
         {# JavaScript ----------------------------------- #}
         {# jQuery #}
         <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> 
 
-        <script type="text/javascript">
+       <script type="text/javascript">
 
             if (typeof jQuery == 'undefined') {
+                console.log("CDN jQuery not found - use local copy.");
                  var jQueryURL = "{% static 'js/jquery.min.js' %}";
                 document.write(unescape("%3Cscript src='" + jQueryURL + "' type='text/javascript'%3E%3C/script%3E"));
+
+                var bootstrapURL = "{% static 'css/bootstrap.min.css' %}";
+                document.write(unescape("%3Clink rel='stylesheet' type='text/css' href='" + bootstrapURL + "' /%3E"));              
+            } else {
+                console.log("CDN jQuery has loaded");
             }
+
         </script>
+
 
         <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> 
        
@@ -73,6 +72,17 @@
             {# Templates' JavaScript #}
         {% endblock %}
         {# /JavaScript ---------------------------------- #}
+        
+    </head>
+
+    <body class="{% block body_class %}{% endblock %}">
+        {% wagtailuserbar %}
+
+        {# {% include "menu.html" %} #}
+
+        {% block content %}{% endblock %}
+
+
     
     </body>
 
