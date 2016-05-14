@@ -249,12 +249,13 @@ h1 div.title_right {
 	width:1000px;
 	max-width: 100%;
 	margin:0;
-	margin-top: 1vh;
+	margin-top: -0.3vh;
 	margin-left: auto;
 	margin-right: auto;
+	/*max-height: 80%;*/
 }
 
 .fotorama__nav__shaft {
-	margin-top: 3vh;
+	margin-top: 0.5vh;
 	background-color: rgb(243,243,243);
 }
