@@ -140,3 +140,18 @@ h1 span:hover {
 	}
 }
 
+
+@media (max-width: 460px) {
+	.title h1.nice {
+		font-size: 30px;
+	}
+
+	.title h1.nice2 {
+		font-size: 20px;
+	}
+
+	.title h1.nice3 {
+		font-size: 28px
+	}
+	}
+

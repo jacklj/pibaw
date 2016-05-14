@@ -1,3 +1,11 @@
+MAy 2016
+1. Calligrapic logo redesign
+todo: redesign two panel thing -> logo then menu below always
+2. galleries -> when big picture loading, have a placeholder the same size so the page doesnt get small
+
+
+
+
 Sat 26th March 2016
 done
 1. new homepage

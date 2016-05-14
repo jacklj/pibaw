@@ -87,11 +87,6 @@ body {
 
 	max-width:700px;
 
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: auto;
-	margin-bottom: auto; 
-
 
 }
 
@@ -103,10 +98,13 @@ body {
 
 	display:inline-block;
 	/*max-width: 450px;*/
-	margin:0 auto;
+	/*margin:0 auto;*/
 
 	/*border:5px solid white;*/
-	
+
+	margin-left: 40px;
+	/*margin-right: auto;*/
+	margin-top: 100px;
 }
 
 .title h1 {
@@ -131,13 +129,73 @@ body {
 }
 
 .menu {
-	margin-top:20px;
-	margin-bottom:20px;
-	margin-right:20px;
-	margin-left:20px;
+	margin-left: 50px;
+	/*margin-right: auto;*/
+	margin-top: 100px;
+	/*margin-bottom: auto; */
 
 	/*border:5px solid black;*/
 }
+
+
+/* flexbox fail fallback ----------------------*/
+@media (max-width: 900px) {
+
+	.title {
+		margin-left: 20px;	
+	}
+
+	.menu {
+
+	}
+
+}
+
+@media (max-width: 760px) {
+
+	.title {
+		margin-left: 0;	
+	}
+
+	.menu {
+
+	}
+
+}
+
+@media (max-width: 700px) {
+
+	.title {
+		margin-top: 40px;
+		margin-left: 50px;	
+	}
+
+	.menu {
+		margin-top: 50px;
+		margin-left: 50px;	
+
+	}
+
+}
+
+@media (max-width: 500px) {
+
+	.title {
+		margin-top: 40px;
+		margin-left: 10px;	
+	}
+
+	.menu {
+		margin-top: 50px;
+		margin-left: 20px;	
+
+	}
+
+}
+
+/* /flexbox fail fallback ----------------------*/
+
+
 
 .menu ul {
 	list-style: none;
